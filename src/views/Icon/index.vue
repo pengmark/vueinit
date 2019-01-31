@@ -1,18 +1,20 @@
 <script>
   export default {
-    data () {
-      return {
-        page: 0,
-        day: 0,
-        header: {
-          src: '/vue-iron.png',
-          title: 'Vue.js 全家桶'
+    computed: {
+      day: {
+        get () {
+          return this.$store.state.day
         },
-        list: [
-          { type: '主廚的話', title: '餐點介紹與相關說明', link: 'javascript:;' },
-          { type: '餐具擺盤', title: '餐具擺盤相關說明', link: 'javascript:;' },
-          { type: '開胃餐點', title: '開胃餐點與相關說明', link: 'javascript:;' },
-        ]
+        set (val) {
+          //this.$store.state.day = val
+          this.$store.commit('SETDAY', val)
+        }
+      },
+      header () {
+        return this.$store.state.header
+      },
+      list () {
+        return this.$store.state.list
       }
     },
     methods: {
@@ -23,13 +25,18 @@
         } else if (e.keyCode === 37) {
           day = day > 0 ? day - 1 : day
         }
-        this.day = day
+        //this.day = day
+        this.$router.replace({
+          params: {
+            day: day + 1
+          }
+        })
       }
     },
     mounted () {
       let day = parseInt(this.$route.params.day) - 1
-      console.log(day)
       this.day = day
+      this.$store.dispatch('GETLIST', day)
       document.addEventListener('keyup', this.changeHandler)
     },
     watch: {

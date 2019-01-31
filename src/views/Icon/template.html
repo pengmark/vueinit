@@ -1,6 +1,24 @@
-<div>
-    <span>{{ day }}</span>
-    <span>{{ list[day].type}}</span>
-    <span>{{ list[day].title}}</span>
+<div id="iron">
+    <section>
+        <div class="container">
+            <div class="title">
+                <img class="logo"
+                     :src="header.src"
+                     alt="">
+                <h1>{{ header.title }}</h1>
+                <div class="description" v-if="list.length > 0">
+                    <div class="menuItem white"
+                        style="transform:scale3d(1.5,1.5,1)">
+                    </div>
+                    <span class="number">{{ day+1 }}</span>
+                    <span class="type">{{ list[day].type}}</span>
+                    <a class="title"
+                       :href="list[day].link"
+                       target="vue-iron"
+                    >{{ list[day].title }} </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 

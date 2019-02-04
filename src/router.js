@@ -8,6 +8,18 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/all',
+      name: 'all'
+    },
+    {
+      path: '/active',
+      name: 'active'
+    },
+    {
+      path: '/complete',
+      name: 'complete'
+    },
+    {
       path: '/',
       name: 'home',
       component: Home
@@ -45,6 +57,10 @@ export default new Router({
     {
       path: '/iron/:day',
       component: () => import(/* webpackChunkName: "Icon" */ './views/Iron/index.vue')
+    },
+    {
+      path: '*',
+      redirect: '/all'
     }
   ]
 })

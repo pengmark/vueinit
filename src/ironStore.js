@@ -1,11 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import axios from 'axios'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  strict: true,
+export default {
+  namespaced: true,
+  //strict: true,
   state: {
     day: 0,
     header: {
@@ -13,6 +10,11 @@ export default new Vuex.Store({
       title: 'Vue.js 全家桶'
     },
     list: []
+  },
+  getters: {
+    currentDay (state) {
+      return state.list[state.day]
+    }
   },
   mutations: {
     SETDAY (state, day) {
@@ -25,10 +27,9 @@ export default new Vuex.Store({
   actions: {
     GETLIST (context, day) {
       context.commit('SETDAY', day)
-      return axios.get('list.json').then(res => {
-        console.log(res)
+      return axios.get('/list.json').then(res => {
         context.commit('SETLIST', res.data)
       })
     }
   }
-})
+}

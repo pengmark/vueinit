@@ -44,7 +44,7 @@ export default new Router({
     },
     {
       path: '/iron/:day',
-      component: () => import(/* webpackChunkName: "Icon" */ './views/Icon/index.vue')
+      component: () => import(/* webpackChunkName: "Icon" */ './views/Iron/index.vue')
     }
   ]
 })

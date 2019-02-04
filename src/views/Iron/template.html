@@ -1,21 +1,21 @@
 <div id="iron">
     <section>
         <div class="container">
-            <div class="title">
+            <div class="title" v-if="header">
                 <img class="logo"
                      :src="header.src"
                      alt="">
                 <h1>{{ header.title }}</h1>
-                <div class="description" v-if="list.length > 0">
+                <div class="description" v-if="currentDay">
                     <div class="menuItem white"
                         style="transform:scale3d(1.5,1.5,1)">
                     </div>
                     <span class="number">{{ day+1 }}</span>
-                    <span class="type">{{ list[day].type}}</span>
+                    <span class="type">{{ currentDay.type}}</span>
                     <a class="title"
-                       :href="list[day].link"
+                       :href="currentDay.link"
                        target="vue-iron"
-                    >{{ list[day].title }} </a>
+                    >{{ currentDay.title }} </a>
                 </div>
             </div>
         </div>
